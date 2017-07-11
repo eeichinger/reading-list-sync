@@ -2,20 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key>
-  <string>reading-list-sync</string>
-  <key>ProgramArguments</key>
-  <array>
-    <string>/Users/foz/.rvm/bin/ruby-rvm-env</string>
-    <string>/Users/foz/src/reading-list-sync/script/sync_bookmarks</string>
-  </array>
-  <key>WorkingDirectory</key>
-  <string>/Users/foz/src/reading-list-sync</string>
-  <key>StartInterval</key>
-  <integer>7200</integer>
-  <key>StandardErrorPath</key>
-  <string>/Users/foz/src/reading-list-sync/log/error.log</string>
-  <key>StandardOutPath</key>
-  <string>/Users/foz/src/reading-list-sync/log/update.log</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>/Users/erich</string>
+	</dict>
+	<key>Label</key>
+	<string>reading-list-sync</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/erich/.rvm/wrappers/reading-list-sync/ruby</string>
+		<string>./script/sync_bookmarks</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/reading-list-sync.stdout</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/reading-list-sync.stdout</string>
+	<key>StartInterval</key>
+	<integer>7200</integer>
+	<key>WorkingDirectory</key>
+	<string>/opt/reading-list-sync</string>
 </dict>
 </plist>
