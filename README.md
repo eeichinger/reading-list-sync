@@ -74,8 +74,8 @@ launchctl load /Library/LaunchDaemons/reading-list-sync.plist
 For more infos see
 
 - [Install RVM](https://rvm.io/rvm/install)
-- [Configure ZSH for RVM if necessary] (https://stackoverflow.com/questions/22773693/rvm-zsh-rvm-is-not-a-function-selecting-rubies-with-rvm-use-will-not-w)
-- [Configure launchd](http://www.splinter.com.au/using-launchd-to-run-a-script-every-5-mins-on/) and (http://notes.jerzygangi.com/creating-a-ruby-launchd-task-with-rvm-in-os-x/)
+- [Configure ZSH for RVM if necessary](https://stackoverflow.com/questions/22773693/rvm-zsh-rvm-is-not-a-function-selecting-rubies-with-rvm-use-will-not-w)
+- [Configure launchd](http://www.splinter.com.au/using-launchd-to-run-a-script-every-5-mins-on/) and [Create ruby launchd task](http://notes.jerzygangi.com/creating-a-ruby-launchd-task-with-rvm-in-os-x/)
 
 
 ## Usage
