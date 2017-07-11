@@ -66,7 +66,7 @@ module ReadingList
         puts "  * adding with tags #{p.smart_tags}"
         counts[:added] += 1
 
-        self.add_to_evernote p.url, p.title, p.smart_tags
+        #self.add_to_evernote p.url, p.title, p.smart_tags
       end
     end
     puts "\nStats:\n"
