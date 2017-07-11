@@ -26,24 +26,61 @@ Safari stores bookmarks in a plist file located in `~/Library/Safari/Bookmarks.p
 
 ## Setup
 
-You need Ruby, and bundler, etc:
+You need RVM, Ruby, and bundler, etc:
 
-    $ rvm install ruby 2.2
-    $ gem install bundler
-    $ bundle
-    $ cp config/secrets_example.yml config/secrets.yml
+### Install RVM
+
+```
+    gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
+    echo "source $HOME/.rvm/scripts/rvm" > ~/.profile
+    source "$HOME/.rvm/scripts/rvm"
+    rvm install ruby 2.2
+    gem install bundler
+```
+
+### Checkout & prepare project
+
+```
+mkdir -p ~/src
+cd ~/src
+git clone git@github.com:eeichinger/reading-list-sync.git
+cd ~/reading-list-sync
+bundle
+cp ./config/secrets_example.yml ./config/secrets.yml
+cp ./launchd/reading-list-sync.example.plist ./launchd/reading-list-sync.plist
+```
 
 Edit the file `config/secrets.yml` and replace the value of `pinboard_api_key` with your [actual Pinboard API key](https://pinboard.in/settings/password).
 
+
+### Schedule with launchd
+
+To schedule this as job with launchd, copy or link the launchd plist file [./launchd/reading-list-sync.plist](./launchd/reading-list-sync.plist) into `/Library/LaunchDaemons`
+
+Edit the file `./launchd/reading-list-sync.plist` and replace all values of `/Users/erich` with your home folder.
+
+```
+# create ruby alias
+rvm alias create reading-list-sync ruby-2.2.6
+# link plist file
+sudo ln -s ~/src/reading-list-sync/launchd/reading-list-sync.plist /Library/LaunchDaemons/reading-list-sync.plist
+# adjust permissions for launchd
+sudo chown root:wheel ~/src/reading-list-sync/launchd/reading-list-sync.plist
+# load it
+launchctl load /Library/LaunchDaemons/reading-list-sync.plist
+```
+
+For more infos see
+
+- [Install RVM](https://rvm.io/rvm/install)
+- [Configure ZSH for RVM if necessary] (https://stackoverflow.com/questions/22773693/rvm-zsh-rvm-is-not-a-function-selecting-rubies-with-rvm-use-will-not-w)
+- [Configure launchd](http://www.splinter.com.au/using-launchd-to-run-a-script-every-5-mins-on/) and (http://notes.jerzygangi.com/creating-a-ruby-launchd-task-with-rvm-in-os-x/)
+
+
 ## Usage
 
-To run directly:
-
-    $ script/sync_bookmarks
-
-To schedule this as job with launchd, use the sample xml config 
-
-    # TODO
+$ script/sync_bookmarks
 
 ## Benefits
 
